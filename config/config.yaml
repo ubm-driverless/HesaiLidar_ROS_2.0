@@ -4,12 +4,12 @@ lidar:
       source_type: 1                                  # The type of data source, 1: real-time lidar connection, 2: pcap, 3: packet rosbag, 4: serial    
       # Depending on the type of source_type, fill in the corresponding configuration block (lidar_udp_type, pcap_type, serial_type)
       lidar_udp_type:
-        device_ip_address: 192.168.1.201              # host_ip_address. If empty(""), the source ip of the udp point cloud is used
+        device_ip_address: 192.168.1.90              # host_ip_address. If empty(""), the source ip of the udp point cloud is used
         udp_port: 2368                                # UDP destination port
         ptc_port: 9347                                # PTC port of lidar
-        multicast_ip_address: 255.255.255.255
+        multicast_ip_address:
 
-        use_ptc_connected: true                       # Set to false when ptc connection is not used
+        use_ptc_connected: true                     # Set to false when ptc connection is not used
         host_ptc_port: 0                              # PTC source port, 0 means auto
         correction_file_path: "Your correction file path"   # The path of correction file
         firetimes_path: "Your firetime file path"           # The path of firetimes file
@@ -17,11 +17,11 @@ lidar:
         recv_point_cloud_timeout: -1                  # The timeout of receiving point cloud
         ptc_connect_timeout: -1                       # The timeout of ptc connection
 
-        host_ip_address: ""
+        host_ip_address: 192.168.1.2
         fault_message_port: 0
 
-        standby_mode: -1                              # The standby mode: [-1] is invalit [0] in operation [1] standby
-        speed: -1                                     # The speed: [-1] invalit, you must make sure your set has been supported by the lidar you are using
+        standby_mode: 0                           # The standby mode: [-1] is invalit [0] in operation [1] standby
+        speed: 1200                                  # The speed: [-1] invalit, you must make sure your set has been supported by the lidar you are using
         ptc_mode: 0                                   # The ptc mode: [0] tcp [1] tcp_ssl
         # tcp_ssl use
         certFile: ""                                  # Represents the path of the user's certificate
@@ -64,7 +64,7 @@ lidar:
       # fov config, [fov_start, fov_end] range [1, 359], [-1, -1]means use default
       fov_start: -1
       fov_end:  -1
-      channel_fov_filter_path: "Your channel fov filter file path"  # The path of channel_fov_filter file, like channel 0 filter [10, 20] and [30,40]
+      channel_fov_filter_path: ""  # The path of channel_fov_filter file, like channel 0 filter [10, 20] and [30,40]
       multi_fov_filter_ranges: "" # compare to channel_fov_filter_path, multi_fov_filter_ranges for all channels. example config "[20,30];[40,200]"
       # other config
       enable_packet_loss_tool: true         # enable the udp packet loss detection tool
